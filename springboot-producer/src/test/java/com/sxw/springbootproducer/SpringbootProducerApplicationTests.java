@@ -17,10 +17,12 @@ public class SpringbootProducerApplicationTests {
     @Test
     public void testSend() throws Exception {
         Order order = new Order();
-        order.setId(2018092107);
-        order.setName("测试订单7");
-        order.setMessageId(System.currentTimeMillis()+"$"+UUID.randomUUID().toString());
-        orderService.createOrder(order);
+        for(int i=0;i<10000;i++){
+            order.setId(i);
+            order.setName("压力订单" + i);
+            order.setMessageId(System.currentTimeMillis()+"$"+UUID.randomUUID().toString());
+            orderService.createOrder(order);
+        }
     }
 
 }
