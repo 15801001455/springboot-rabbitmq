@@ -20,6 +20,9 @@ public class OrderReceiver {
             key = "order.*"
         )
     )
+    /**
+     * update jyc 我的理解：这个项目是保证了生产消息不丢数据，这里消费端也应该保证消费消息不重复，处理办法应该跟生产端的处理方式类似
+     */
     @RabbitHandler//如果有消息过来，在消费的时候调用这个方法
     public void onOrderMessage(@Payload Order order, @Headers Map<String,Object> headers, Channel channel) throws IOException {
         //消费者操作
